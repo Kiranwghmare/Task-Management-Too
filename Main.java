@@ -2,8 +2,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        TaskManager taskManager = new TaskManager();
         Scanner scanner = new Scanner(System.in);
+        TaskManager taskManager = new TaskManager();
         int choice;
 
         do {
@@ -30,11 +30,9 @@ public class Main {
                     System.out.print("Enter task ID to update: ");
                     int updateId = scanner.nextInt();
                     scanner.nextLine(); // Consume newline
-                    System.out.print("Enter new task title (leave blank to keep current): ");
+                    System.out.print("Enter new title: ");
                     String newTitle = scanner.nextLine();
-                    System.out.print("Is the task completed? (true/false): ");
-                    boolean completed = scanner.nextBoolean();
-                    taskManager.updateTask(updateId, newTitle, completed);
+                    taskManager.updateTask(updateId, newTitle);
                     break;
                 case 4:
                     System.out.print("Enter task ID to delete: ");
@@ -42,7 +40,7 @@ public class Main {
                     taskManager.deleteTask(deleteId);
                     break;
                 case 5:
-                    System.out.println("Exiting the program.");
+                    System.out.println("Exiting...");
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");

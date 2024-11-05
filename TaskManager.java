@@ -6,48 +6,46 @@ public class TaskManager {
     private int nextId;
 
     public TaskManager() {
-        this.tasks = new ArrayList<>();
-        this.nextId = 1; // Starting ID for tasks
+        tasks = new ArrayList<>();
+        nextId = 1; // Start IDs from 1
     }
 
-    // Create
     public void addTask(String title) {
-        Task task = new Task(nextId++, title);
-        tasks.add(task);
-        System.out.println("Task added: " + task);
+        Task newTask = new Task(nextId++, title);
+        tasks.add(newTask);
+        System.out.println("Task added: " + title);
     }
 
-    // Read
     public void viewTasks() {
         if (tasks.isEmpty()) {
             System.out.println("No tasks available.");
             return;
         }
+        System.out.println("Current tasks:");
         for (Task task : tasks) {
-            System.out.println(task);
+            System.out.println("ID: " + task.getId() + ", Title: " + task.getTitle() + ", Completed: " + task.isCompleted());
         }
     }
 
-    // Update
-    public void updateTask(int id, String newTitle, boolean completed) {
+    public void updateTask(int id, String newTitle) {
         for (Task task : tasks) {
             if (task.getId() == id) {
-                task.setCompleted(completed);
-                // Update title if provided
-                if (newTitle != null && !newTitle.isEmpty()) {
-                    // You might want to add a setter in the Task class for the title
-                    task.setTitle(newTitle); // Assuming you add a setter for title
-                }
-                System.out.println("Task updated: " + task);
+                task.setTitle(newTitle);
+                System.out.println("Task updated: " + newTitle);
                 return;
             }
         }
-        System.out.println("Task not found.");
+        System.out.println("Task not found with ID: " + id);
     }
 
-    // Delete
     public void deleteTask(int id) {
-        tasks.removeIf(task -> task.getId() == id);
-        System.out.println("Task deleted with ID: " + id);
+        for (Task task : tasks) {
+            if (task.getId() == id) {
+                tasks.remove(task);
+                System.out.println("Task deleted: " + task.getTitle());
+                return;
+            }
+        }
+        System.out.println("Task not found with ID: " + id);
     }
 }

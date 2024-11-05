@@ -26,17 +26,7 @@ public class Task {
         isCompleted = completed;
     }
 
-    // Setter for title
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    @Override
-    public String toString() {
-        return "Task{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", isCompleted=" + isCompleted +
-                '}';
     }
 }
